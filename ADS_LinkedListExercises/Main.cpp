@@ -32,10 +32,25 @@ void exercise1()
 {
 	DoubleLinkedList<int> dList;
 
+	/*************************** Testing: push, print, size, clear ***************************/
+
+	//pushing to the list
 	dList.push(10);
 	dList.push(20);
 	dList.push(30);
 	dList.push(40);
+
+	//printing the list
+	dList.print();
+
+	//show the size
+	std::cout << "Size(before clear): " << dList.count() << std::endl;
+
+	//clear the list of contents and free RAM
+	dList.clear();
+
+	//show the size
+	std::cout << "Size(after clear): " << dList.count() << std::endl;
 }
 
 /// @brief Modify the Doubly linked list to be a circular linked list.
