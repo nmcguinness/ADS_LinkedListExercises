@@ -6,13 +6,17 @@ template <typename T>
 class Node {
 public:
 	/// @brief a pointer to the data being stored by the stored
-	T* pData;
+	T data;
 
 	/// @brief a pointer to the next node in the list
-	Node* pNext;
+	Node* pNext = nullptr;
 
 	/// @brief a pointer to the last node in the list
-	Node* pLast;
+	Node* pLast = nullptr;
+
+	Node(T data) {
+		this->data = data; //address of incoming and stores address in pData
+	}
 };
 
 /// @brief a template class implementation of a double linked list
@@ -21,10 +25,10 @@ template <typename T>
 class DoubleLinkedList {
 private:
 	/// @brief stores address of the first element
-	Node* pHead;
+	Node<T>* pHead = nullptr;
 
 	/// @brief stores address of the last element
-	Node* pTail;
+	Node<T>* pTail = nullptr;
 
 	/// @brief returns the number of elements in the list
 	int size;
@@ -37,6 +41,23 @@ public:
 
 	/// @brief Pushes a new data element onto the end of the list
 	//push(???) //1
+	void push(T data) {
+		Node<T>* pNew = new Node<T>(data);
+
+		if (pHead == nullptr) {
+			pHead = pNew;
+		}
+		else { //A, B, C, D, nullptr
+			Node<T>* pCurrent = this->pHead;
+
+			while (pCurrent->pNext != nullptr) {
+				pCurrent = pCurrent->pNext;
+			}
+			pCurrent->pNext = pNew;
+		}
+
+		this->size++;
+	}
 
 	/// @brief Pushes a new data element onto the end of the list
 	//pop(???) //4
@@ -57,8 +78,9 @@ public:
 	//removeFrom() //9
 
 	/// @brief Returns a count of the number of elements in the list
-	//count() //3
-
+	int count() const { //3
+		return this->size;
+	}
 	/// @brief Sorts the data elements using a user-defined predicate function - see function<bool(T, T)>
 	//sort() //10
 };

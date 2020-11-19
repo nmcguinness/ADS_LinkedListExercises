@@ -6,6 +6,8 @@
  * \date   November 2020
  *********************************************************************/
 #include <iostream>
+#include "DoubleLinkedList.h"
+
 using namespace std;
 
 //declarations
@@ -28,6 +30,12 @@ int main()
 /// @brief Implement a Doubly Linked List
 void exercise1()
 {
+	DoubleLinkedList<int> dList;
+
+	dList.push(10);
+	dList.push(20);
+	dList.push(30);
+	dList.push(40);
 }
 
 /// @brief Modify the Doubly linked list to be a circular linked list.
