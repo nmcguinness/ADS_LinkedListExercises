@@ -33,32 +33,32 @@ public:
 	//constructor
 
 	/// @brief Prints all nodes in the list
-	//print()
+	//print() //2
 
 	/// @brief Pushes a new data element onto the end of the list
-	//push(???)
+	//push(???) //1
 
 	/// @brief Pushes a new data element onto the end of the list
-	//pop(???)
+	//pop(???) //4
 
 	/// @brief Inserts a new data element at a valid user-defined index
-	//insertAt()
+	//insertAt() //6
 
 	/// @brief Returns a data element at a valid user-defined index
-	//getAt()
+	//getAt() //5
 
 	/// @brief Removes a data element at a valid user-defined index
-	//removeAt()
+	//removeAt() //7
 
 	/// @brief Returns a data element using a user-defined predicate function - see lambda, functor, and function<>
-	//removeIf()
+	//removeIf() //8
 
 	/// @brief Removes all data elements across a valid user-defined range of indices (e.g. 0-2 removes the first three elements)
-	//removeFrom()
+	//removeFrom() //9
 
 	/// @brief Returns a count of the number of elements in the list
-	//count()
+	//count() //3
 
 	/// @brief Sorts the data elements using a user-defined predicate function - see function<bool(T, T)>
-	//sort()
+	//sort() //10
 };
