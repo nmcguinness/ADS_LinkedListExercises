@@ -142,7 +142,9 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DList.h" />
+    <ClInclude Include="CircularLinkedList.h" />
+    <ClInclude Include="DoubleLinkedList.h" />
+    <ClInclude Include="measureTime.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
