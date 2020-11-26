@@ -6,11 +6,11 @@
  * \date   November 2020
  *********************************************************************/
 #include <iostream>
-#include "DoubleLinkedList.h"
+#include "AdvancedDoubleLinkedList.h"
 
 using namespace std;
 
-//declarations
+//core exercises
 void exercise1();
 void exercise2();
 void exercise3();
@@ -18,6 +18,9 @@ void exercise4();
 void exercise5();
 void exercise6();
 void exercise7();
+
+//additional exercises using AdvancedDoubleLinkedList
+void additionalExercise1();
 
 int main()
 {
@@ -30,27 +33,6 @@ int main()
 /// @brief Implement a Doubly Linked List
 void exercise1()
 {
-	DoubleLinkedList<int> dList;
-
-	/*************************** Testing: push, print, size, clear ***************************/
-
-	//pushing to the list
-	dList.push(10);
-	dList.push(20);
-	dList.push(30);
-	dList.push(40);
-
-	//printing the list
-	dList.print();
-
-	//show the size
-	std::cout << "Size(before clear): " << dList.count() << std::endl;
-
-	//clear the list of contents and free RAM
-	dList.clear();
-
-	//show the size
-	std::cout << "Size(after clear): " << dList.count() << std::endl;
 }
 
 /// @brief Modify the Doubly linked list to be a circular linked list.
@@ -81,4 +63,31 @@ void exercise6()
 /// @brief Using the algorithm in five, measure how long it takes to add 10, 100, 1,000, 10,000 and 100, 000 elements into this array.Compare this performance to adding these elements to the head of your linked list.
 void exercise7()
 {
+}
+
+/******************************** Additional Exercises ********************************/
+
+void additionalExercise1()
+{
+	AdvancedDoubleLinkedList<int> dList;
+
+	/*************************** Testing: push, print, size, clear ***************************/
+
+	//pushing to the list
+	dList.push(10);
+	dList.push(20);
+	dList.push(30);
+	dList.push(40);
+
+	//printing the list
+	dList.print();
+
+	//show the size
+	std::cout << "Size(before clear): " << dList.size() << std::endl;
+
+	//clear the list of contents and free RAM
+	dList.clear();
+
+	//show the size
+	std::cout << "Size(after clear): " << dList.size() << std::endl;
 }

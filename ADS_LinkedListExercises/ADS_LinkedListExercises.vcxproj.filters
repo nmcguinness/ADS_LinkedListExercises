@@ -21,7 +21,13 @@
     <ClInclude Include="CircularLinkedList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AdvancedDoubleLinkedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="DoubleLinkedList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
