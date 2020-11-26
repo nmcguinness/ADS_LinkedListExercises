@@ -61,4 +61,22 @@ public:
 		}
 		this->pPrevious = temp;
 	}
+
+	void printAllFromHead() {
+
+		//write a little bit of code to traverse the nodes and print the data
+		Node<T> current = *this;
+
+		//move to the front of the node chain (i.e. to where there is no pPrevious)
+		while (current.pPrevious != nullptr) {
+			current = *current.pPrevious;
+		}
+
+		//now move from the head of the chain to the tail of the chain and print
+		std::cout << current.data << std::endl;
+		do {
+			current = *current.pNext;
+			std::cout << current.data << std::endl;
+		} while (current.pNext != nullptr);
+	}
 };

@@ -24,11 +24,16 @@ void additionalExercise1();
 
 //sandbox/demo methods
 void sandbox1();
+template <typename T>
+void printAllFromHead(Node<T> node);
 
 int main()
 {
 	cout << "Exercises 1..." << endl;
 	exercise1();
+
+	cout << "Sandbox..." << endl;
+	sandbox1();
 }
 
 /************************** Linked List Exercises **************************/
@@ -101,9 +106,37 @@ void additionalExercise1()
 void sandbox1()
 {
 	//declare a single Node and put a value of any type inside
-	Node<XXX> node1 = new Node<XXXX>(/*data*/);
+	Node<string> node1("monday");
 
-	//add 3 more Nodes (also with data inside) and use 1x insertBefore, 1x insertAfter, 1x of either
+	//add 3 more Nodes (also with data inside) and use 1x insertBefore, 1x insertAfter, 2x of either
+	node1.insertBefore("is");
+	node1.insertAfter("the");
+	node1.insertAfter("best");
+	node1.insertAfter("day?");
 
 	//write a little bit of code to traverse the nodes and print the data
+	printAllFromHead(node1);
+
+	//call the new method inside Node class
+	node1.printAllFromHead();
+
+}
+
+template <typename T>
+void printAllFromHead(Node<T> node) {
+
+	//write a little bit of code to traverse the nodes and print the data
+	Node<string> current = node;
+
+	//move to the front of the node chain (i.e. to where there is no pPrevious)
+	while (current.pPrevious != nullptr) {
+		current = *current.pPrevious;
+	}
+
+	//now move from the head of the chain to the tail of the chain and print
+	cout << current.data << endl;
+	do {
+		current = *current.pNext;
+		cout << current.data << endl;
+	} while (current.pNext != nullptr);
 }
