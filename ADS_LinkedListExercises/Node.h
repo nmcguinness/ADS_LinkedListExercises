@@ -20,13 +20,16 @@ public:
 		//store address of incoming data
 		this->data = data;
 		//initialize the pointers
-		this->pNext = this->pPrevious = nullptr;
+		this->pNext = this->pPrevious = nullptr; //semi-colon
 	}
 
 	~Node() {
 		//free both the pointers
-		delete pNext;
-		delete pPrevious;
+		pNext = nullptr;
+		pPrevious = nullptr;
+		//	delete pNext;
+		//	delete pPrevious;
+
 		//set to default for data (e.g. nullptr for object, 0 for int, false for bool)
 		data = T();
 	}

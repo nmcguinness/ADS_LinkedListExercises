@@ -22,6 +22,9 @@ void exercise7();
 //additional exercises using AdvancedDoubleLinkedList
 void additionalExercise1();
 
+//sandbox/demo methods
+void sandbox1();
+
 int main()
 {
 	cout << "Exercises 1..." << endl;
@@ -90,4 +93,17 @@ void additionalExercise1()
 
 	//show the size
 	std::cout << "Size(after clear): " << dList.size() << std::endl;
+}
+
+/************************** Sandbox/Demoing bits of code **************************/
+
+/// @brief Playing with the Node insertBefore() and insertAfter()
+void sandbox1()
+{
+	//declare a single Node and put a value of any type inside
+	Node<XXX> node1 = new Node<XXXX>(/*data*/);
+
+	//add 3 more Nodes (also with data inside) and use 1x insertBefore, 1x insertAfter, 1x of either
+
+	//write a little bit of code to traverse the nodes and print the data
 }
