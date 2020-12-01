@@ -2,7 +2,7 @@
 
 #include "Node.h"
 
-/// @brief a template class implementation of a simple double linked list that adds
+/// @brief a template class implementation of a double linked list
 /// @tparam T Either a value or reference type (e.g. int, Student, list, map, vector)
 template <typename T>
 class DoubleLinkedList {
@@ -38,8 +38,8 @@ public:
 			//store address of the next
 			Node<T>* pNext = pCurrent->pNext;
 
-			//free the current by assigning to null
-			pCurrent = nullptr;
+			//free the memory - see https://www.geeksforgeeks.org/delete-in-c/#:~:text=Delete%20is%20an%20operator%20that,are%20created%20by%20new%20expression.&text=New%20operator%20is%20used%20for,operator%20deallocates%20memory%20from%20heap.
+			delete pCurrent;
 
 			//move to the next
 			pCurrent = pNext;
@@ -61,20 +61,84 @@ public:
 		}
 	}
 
-	void append(T item)
+	//add to the tail of the linked list
+	void append(T data)
 	{
+		//if list is empty then set it up
+		if (pHead == nullptr) {
+			pHead = pTail = new Node<T>(data);
+		}
+		else {
+			pTail->insertAfter(data);
+			//pTail now becomes the newly added Node
+			pTail = pTail->pNext;
+		}
+
+		//increase list size
+		count++;
 	}
 
-	void prepend(T item)
+	//add to the head of the linked list
+	void prepend(T data)
 	{
+		if (pHead == nullptr) {
+			pHead = pTail = new Node<T>(data);
+		}
+		else {
+			pHead->insertBefore(data);
+		}
+
+		//increase list size
+		count++;
 	}
 
 	void removeHead()
 	{
+		if (pHead == nullptr)
+			return;
+
+		if (pHead == pTail)
+		{
+			count--;
+
+			delete pHead;
+			pHead = pTail = nullptr;
+		}
+		else
+		{
+			count--;
+
+			Node<T>* pTemp = pHead;
+			pHead = pHead->next;
+
+			delete pTemp;
+			pTemp = nullptr;
+		}
 	}
 
 	void removeTail()
 	{
+		if (pHead == nullptr)
+		{
+			return;
+		}
+		else if (pHead == pTail)
+		{
+			count--;
+
+			delete pTail;
+			pHead = pTail = nullptr;
+		}
+		else
+		{
+			count--;
+
+			Node<T>* pTemp = pTail;
+			pTail = pTail->previous;
+
+			delete pTemp;
+			pTemp = nullptr;
+		}
 	}
 
 	/// @brief Returns size of the number of elements in the list

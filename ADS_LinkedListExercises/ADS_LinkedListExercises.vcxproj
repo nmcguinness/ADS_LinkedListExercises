@@ -145,6 +145,7 @@
     <ClInclude Include="CircularLinkedList.h" />
     <ClInclude Include="AdvancedDoubleLinkedList.h" />
     <ClInclude Include="DoubleLinkedList.h" />
+    <ClInclude Include="DoubleLinkedListIterator.h" />
     <ClInclude Include="measureTime.h" />
     <ClInclude Include="Node.h" />
   </ItemGroup>

@@ -27,8 +27,6 @@ public:
 		//free both the pointers
 		pNext = nullptr;
 		pPrevious = nullptr;
-		//	delete pNext;
-		//	delete pPrevious;
 
 		//set to default for data (e.g. nullptr for object, 0 for int, false for bool)
 		data = T();
@@ -38,32 +36,31 @@ public:
 	/// @param data Data to be stored by the new Node
 	void insertAfter(T data)
 	{
-		Node<T>* temp = new Node<T>(data);
-		temp->pPrevious = this;
-		temp->pNext = this->pNext;
+		Node<T>* pNew = new Node<T>(data);
+		pNew->pPrevious = this;
+		pNew->pNext = this->pNext;
 		if (this->pNext != nullptr)
 		{
-			this->pNext->pPrevious = temp;
+			this->pNext->pPrevious = pNew;
 		}
-		this->pNext = temp;
+		this->pNext = pNew;
 	}
 
 	/// @brief Inserts a new Node object before this Node
 	/// @param data Data to be stored by the new Node
 	void insertBefore(T data)
 	{
-		Node<T>* temp = new Node<T>(data);
-		temp->pNext = this;
-		temp->pPrevious = this->pPrevious;
+		Node<T>* pNew = new Node<T>(data);
+		pNew->pNext = this;
+		pNew->pPrevious = this->pPrevious;
 		if (this->pPrevious != nullptr)
 		{
-			this->pPrevious->pNext = temp;
+			this->pPrevious->pNext = pNew;
 		}
-		this->pPrevious = temp;
+		this->pPrevious = pNew;
 	}
 
 	void printAllFromHead() {
-
 		//write a little bit of code to traverse the nodes and print the data
 		Node<T> current = *this;
 

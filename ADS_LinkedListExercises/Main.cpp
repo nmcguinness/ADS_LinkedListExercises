@@ -6,6 +6,8 @@
  * \date   November 2020
  *********************************************************************/
 #include <iostream>
+#include "DoubleLinkedList.h"
+#include "CircularLinkedList.h"
 #include "AdvancedDoubleLinkedList.h"
 
 using namespace std;
@@ -19,21 +21,28 @@ void exercise5();
 void exercise6();
 void exercise7();
 
-//additional exercises using AdvancedDoubleLinkedList
+//additional exercises using AdvancedDoubleLinkedList NOT listed in Exercises PDF in Moodle
 void additionalExercise1();
-
-//sandbox/demo methods
-void sandbox1();
+void additionalExercise2();
 template <typename T>
 void printAllFromHead(Node<T> node);
 
 int main()
 {
-	cout << "Exercises 1..." << endl;
+	cout << "Exercises 1 - Implement a Doubly Linked List..." << endl;
 	exercise1();
 
-	cout << "Sandbox..." << endl;
-	sandbox1();
+	cout << "Exercises 2 - Modify the Doubly linked list to be a circular linked list..." << endl;
+	exercise2();
+
+	cout << "Exercises 3 - Using your Circular linked list, implement a playlist for a Digital audio player..." << endl;
+	exercise3();
+
+	cout << "Exercises 4 - Using your doubly linked list, write an application that asks a user to input three numbers..." << endl;
+	exercise4();
+
+	cout << "Additional Exercises..." << endl;
+	//additionalExercise2();
 }
 
 /************************** Linked List Exercises **************************/
@@ -100,31 +109,27 @@ void additionalExercise1()
 	std::cout << "Size(after clear): " << dList.size() << std::endl;
 }
 
-/************************** Sandbox/Demoing bits of code **************************/
-
 /// @brief Playing with the Node insertBefore() and insertAfter()
-void sandbox1()
+void additionalExercise2()
 {
 	//declare a single Node and put a value of any type inside
 	Node<string> node1("monday");
 
 	//add 3 more Nodes (also with data inside) and use 1x insertBefore, 1x insertAfter, 2x of either
 	node1.insertBefore("is");
-	node1.insertAfter("the");
-	node1.insertAfter("best");
 	node1.insertAfter("day?");
+	node1.insertAfter("best");
+	node1.insertAfter("the");
 
 	//write a little bit of code to traverse the nodes and print the data
 	printAllFromHead(node1);
 
 	//call the new method inside Node class
 	node1.printAllFromHead();
-
 }
 
 template <typename T>
 void printAllFromHead(Node<T> node) {
-
 	//write a little bit of code to traverse the nodes and print the data
 	Node<string> current = node;
 

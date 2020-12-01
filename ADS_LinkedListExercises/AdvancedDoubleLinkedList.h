@@ -1,7 +1,7 @@
 #pragma once
 #include "Node.h"
 
-/// @brief a template class implementation of an advanced double linked list that adds
+/// @brief a template class implementation of an advanced double linked list that adds push, pop, insertAt
 /// @tparam T Either a value or reference type (e.g. int, Student, list, map, vector)
 template <typename T>
 class AdvancedDoubleLinkedList {
@@ -38,8 +38,8 @@ public:
 			//store address of the next
 			Node<T>* pNext = pCurrent->pNext;
 
-			//free the current by assigning to null
-			pCurrent = nullptr;
+			//free the memory - see https://www.geeksforgeeks.org/delete-in-c/#:~:text=Delete%20is%20an%20operator%20that,are%20created%20by%20new%20expression.&text=New%20operator%20is%20used%20for,operator%20deallocates%20memory%20from%20heap.
+			delete pCurrent;
 
 			//move to the next
 			pCurrent = pNext;
