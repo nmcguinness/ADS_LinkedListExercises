@@ -1,5 +1,7 @@
-#pragma once
+template <class T> class CircularLinkedListIterator;
+template <class T> class CircularLinkedList;
 
+#pragma once
 #include "Node.h"
 
 /// @brief a template class implementation of a double linked list
@@ -30,39 +32,7 @@ public:
 		clear();
 	}
 
-	/// @brief Frees the data associated with each node in the list
-	void clear() {
-		Node<T>* pCurrent = this->pHead;
-
-		while (pCurrent->pNext != pHead) {
-			//store address of the next
-			Node<T>* pNext = pCurrent->pNext;
-
-			//free the memory - see https://www.geeksforgeeks.org/delete-in-c/#:~:text=Delete%20is%20an%20operator%20that,are%20created%20by%20new%20expression.&text=New%20operator%20is%20used%20for,operator%20deallocates%20memory%20from%20heap.
-			delete pCurrent;
-
-			//move to the next
-			pCurrent = pNext;
-		}
-
-		//delete the last element not covered by the loop above
-		delete this->pTail;
-
-		//set the head and tail to null and set the count to 0
-		this->pHead = nullptr;
-		this->pTail = nullptr;
-		this->count = 0;
-	}
-
-	/// @brief Prints all nodes in the list
-	void print() const {
-		Node<T>* pCurrent = this->pHead; //A, B, C
-
-		while (pCurrent != nullptr) {
-			std::cout << pCurrent->data << std::endl;
-			pCurrent = pCurrent->pNext;
-		}
-	}
+#pragma region Access & Modify List Methods
 
 	//add to the tail of the linked list
 	void append(T data)
@@ -112,8 +82,8 @@ public:
 		{
 			count--;
 
-			delete pHead;
-			pHead = pTail = nullptr;
+			delete pHead; //free the Node pointed to by pHead
+			pHead = pTail = nullptr; //resetting the variables pHead and pTail
 		}
 		else
 		{
@@ -157,5 +127,97 @@ public:
 	/// @brief Returns size of the number of elements in the list
 	int size() const {
 		return this->count;
+	}
+
+	/// @brief Frees the data associated with each node in the list
+	void clear() {
+		Node<T>* pCurrent = this->pHead;
+
+		while (pCurrent->pNext != pHead) {
+			//store address of the next
+			Node<T>* pNext = pCurrent->pNext;
+
+			//free the memory - see https://www.geeksforgeeks.org/delete-in-c/#:~:text=Delete%20is%20an%20operator%20that,are%20created%20by%20new%20expression.&text=New%20operator%20is%20used%20for,operator%20deallocates%20memory%20from%20heap.
+			delete pCurrent;
+
+			//move to the next
+			pCurrent = pNext;
+		}
+
+		//delete the last element not covered by the loop above
+		delete this->pTail;
+
+		//set the head and tail to null and set the count to 0
+		this->pHead = nullptr;
+		this->pTail = nullptr;
+		this->count = 0;
+	}
+
+	/// @brief Prints all nodes in the list
+	void print() const {
+		Node<T>* pCurrent = this->pHead; //A, B, C
+
+		while (pCurrent != nullptr) {
+			std::cout << pCurrent->data << std::endl;
+			pCurrent = pCurrent->pNext;
+		}
+	}
+#pragma endregion
+
+#pragma region Iterator Specific Methods
+	/// @brief Returns an iterator (i.e. a pointer to the specified node within the list) which we use to access each value using it.item()
+	/// @return An ierator for the list
+	CircularLinkedListIterator<T> getIterator(Node<T>* pNode) {
+		return CircularLinkedListIterator<T>(this, pNode);
+	}
+
+	/// @brief Returns a pointer to the head of the list - used by CircularLinkedListIterator
+	/// @return Pointer to the head Node
+	Node<T>* getHead() const {
+		return this->pHead;
+	}
+
+	/// @brief Returns a pointer to the tail of the list - used by CircularLinkedListIterator
+	/// @return Pointer to the tail Node
+	Node<T>* getTail() const {
+		return this->pTail;
+	}
+#pragma endregion
+};
+
+/// @brief Creates a iterator for a circular double linked list
+/// @tparam T
+template <class T>
+class CircularLinkedListIterator {
+public:
+	Node<T>* pCurrentNode;
+	CircularLinkedList<T>* pList;
+
+	CircularLinkedListIterator(CircularLinkedList<T>* pList, Node<T>* node) {
+		this->pList = pList;
+		this->pCurrentNode = node;
+	}
+
+	void next()
+	{
+		if (pCurrentNode == nullptr)
+			return;
+		pCurrentNode = pCurrentNode->pNext;
+	}
+	void previous()
+	{
+		if (pCurrentNode == nullptr)
+			return;
+		pCurrentNode = pCurrentNode->pPrevious;
+	}
+	T item() {
+		return pCurrentNode->data;
+	}
+
+	bool isEnd() {
+		return pCurrentNode == pList->getTail();
+	}
+	bool isStart() {
+		return pCurrentNode == pList->getHead();
 	}
 };
